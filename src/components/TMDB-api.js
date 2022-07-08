@@ -11,13 +11,13 @@ export function getTrendingMovies() {
   return axios.get(`${BASE_URL}/trending/movie/day?${params}`);
 }
 
-// export function searchMovies() {
-//     const params = new URLSearchParams({
-//         api_key: API_KEY,
-//         query:
-//     });
-//   return axios.get(`${BASE_URL}//search/movie/?${params}`);
-// }
+export function searchMovies(query) {
+  const params = new URLSearchParams({
+    api_key: API_KEY,
+    query: query,
+  });
+  return axios.get(`${BASE_URL}/search/movie/?${params}`);
+}
 
 export function filmDetails(id) {
   const params = new URLSearchParams({
