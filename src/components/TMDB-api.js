@@ -27,6 +27,22 @@ export function filmDetails(id) {
   return axios.get(`${BASE_URL}/movie/${id}?${params}`);
 }
 
-export function getImage(path) {
-  return `https://image.tmdb.org/t/p/w500/${path}`;
+export function getImage(path, size) {
+  return `https://image.tmdb.org/t/p/${size}/${path}`;
+}
+
+export function getCast(id) {
+  const params = new URLSearchParams({
+    api_key: API_KEY,
+  });
+
+  return axios.get(`${BASE_URL}/movie/${id}/credits?${params}`);
+}
+
+export function getReviews(id) {
+  const params = new URLSearchParams({
+    api_key: API_KEY,
+  });
+
+  return axios.get(`${BASE_URL}/movie/${id}/reviews?${params}`);
 }
