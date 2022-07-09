@@ -35,7 +35,7 @@ export default function MovieDetails() {
 
   return (
     <StyledSection>
-      <Link to={location?.state?.from ? location.state.from : '/'}>
+      <Link to={location?.state?.from ?? '/'}>
         <StyledButton type="button">Go back</StyledButton>
       </Link>
 
@@ -57,7 +57,7 @@ export default function MovieDetails() {
             <StyledLink
               to="cast"
               state={{
-                from: location?.state?.from ? location.state.from : '/',
+                from: location?.state?.from ?? '/',
               }}
             >
               Cast
@@ -67,7 +67,7 @@ export default function MovieDetails() {
             <StyledLink
               to="reviews"
               state={{
-                from: location?.state?.from ? location.state.from : '/',
+                from: location?.state?.from ?? '/',
               }}
             >
               Reviews
