@@ -35,7 +35,7 @@ export default function MovieDetails() {
 
   return (
     <StyledSection>
-      <Link to={location.state.from}>
+      <Link to={location?.state?.from ? location.state.from : '/'}>
         <StyledButton type="button">Go back</StyledButton>
       </Link>
 
@@ -54,12 +54,22 @@ export default function MovieDetails() {
         <h2>Additional information</h2>
         <StyledAdditionalLinks>
           <StyledLi>
-            <StyledLink to="cast" state={{ from: location.state.from }}>
+            <StyledLink
+              to="cast"
+              state={{
+                from: location?.state?.from ? location.state.from : '/',
+              }}
+            >
               Cast
             </StyledLink>
           </StyledLi>
           <StyledLi>
-            <StyledLink to="reviews" state={{ from: location.state.from }}>
+            <StyledLink
+              to="reviews"
+              state={{
+                from: location?.state?.from ? location.state.from : '/',
+              }}
+            >
               Reviews
             </StyledLink>
           </StyledLi>
