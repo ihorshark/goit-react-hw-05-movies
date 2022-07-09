@@ -22,7 +22,10 @@ export default function Home() {
       <StyledUl>
         {movies.map(movie => (
           <StyledLi key={movie.id}>
-            <StyledLink to={`/movies/${movie.id}`} state={{ from: location }}>
+            <StyledLink
+              to={`/goit-react-hw-05-movies/movies/${movie.id}`}
+              state={{ from: location }}
+            >
               {movie.title}
             </StyledLink>
           </StyledLi>

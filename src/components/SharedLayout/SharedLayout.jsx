@@ -6,8 +6,8 @@ export default function SharedLayout() {
   return (
     <StyledContainer>
       <StyledNav>
-        <StyledLink to="/">Home</StyledLink>
-        <StyledLink to="/movies">Movies</StyledLink>
+        <StyledLink to="/goit-react-hw-05-movies/">Home</StyledLink>
+        <StyledLink to="/goit-react-hw-05-movies/movies">Movies</StyledLink>
       </StyledNav>
       <Suspense fallback={<h1>Loading...</h1>}>
         <Outlet />
