@@ -1,44 +1,18 @@
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { filmDetails, getImage } from 'components/TMDB-api';
-import styled from 'styled-components';
+import {
+  StyledSection,
+  StyledButton,
+  StyledWrapper,
+  StyledInfo,
+  StyledAdditionalInfo,
+  StyledAdditionalLinks,
+  StyledLi,
+  StyledLink,
+} from './MovieDetails.styled';
 
-const StyledSection = styled.section`
-  background-color: rgba(240, 240, 240, 0.8);
-`;
-
-const StyledButton = styled.button`
-  width: 100px;
-  height: 30px;
-`;
-
-const StyledWrapper = styled.div`
-  display: flex;
-  justify-content: space-around;
-  padding: 15px;
-  box-shadow: inset 0 0 5px 2px rgba(0, 0, 0, 0.3);
-`;
-
-const StyledInfo = styled.div`
-  max-width: 600px;
-`;
-
-const StyledAdditionalInfo = styled.div`
-  padding: 15px;
-  box-shadow: inset 0 0 5px 2px rgba(0, 0, 0, 0.3);
-`;
-
-const StyledAdditionalLinks = styled.ul`
-  border: 0;
-  padding: 0;
-  list-style: none;
-`;
-
-const StyledLi = styled.li`
-  font-size: 18px;
-`;
-
-export function MovieDetails() {
+export default function MovieDetails() {
   const location = useLocation();
   const [film, setFilm] = useState({});
   const [genres, setGenres] = useState('');
@@ -80,17 +54,19 @@ export function MovieDetails() {
         <h2>Additional information</h2>
         <StyledAdditionalLinks>
           <StyledLi>
-            <Link to="cast" state={{ from: location.state.from }}>
+            <StyledLink to="cast" state={{ from: location.state.from }}>
               Cast
-            </Link>
+            </StyledLink>
           </StyledLi>
           <StyledLi>
-            <Link to="reviews" state={{ from: location.state.from }}>
+            <StyledLink to="reviews" state={{ from: location.state.from }}>
               Reviews
-            </Link>
+            </StyledLink>
           </StyledLi>
         </StyledAdditionalLinks>
-        <Outlet />
+        <Suspense fallback={<h1>Loading...</h1>}>
+          <Outlet />
+        </Suspense>
       </StyledAdditionalInfo>
     </StyledSection>
   );

@@ -1,14 +1,5 @@
 import { useState } from 'react';
-import styled from 'styled-components';
-
-const StyledInput = styled.input`
-  width: 200px;
-  height: 26px;
-`;
-
-const StyledButton = styled.button`
-  height: 32px;
-`;
+import { StyledForm, StyledInput, StyledButton } from './Form.styled';
 
 export function Form({ onSubmit }) {
   const [searchQuery, setSearchQuery] = useState('');
@@ -21,7 +12,7 @@ export function Form({ onSubmit }) {
   }
 
   return (
-    <form onSubmit={formSubmit}>
+    <StyledForm onSubmit={formSubmit}>
       <label>
         <StyledInput
           type="text"
@@ -30,6 +21,6 @@ export function Form({ onSubmit }) {
         />
         <StyledButton type="submit">Search</StyledButton>
       </label>
-    </form>
+    </StyledForm>
   );
 }

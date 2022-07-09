@@ -1,20 +1,15 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect, Suspense } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { searchMovies } from 'components/TMDB-api';
 import { useSearchParams, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
 import { Form } from './Form';
-
-const StyledUl = styled.ul`
-  border: 0;
-  padding: 0;
-  list-style: none;
-`;
-
-const StyledLi = styled.li`
-  font-size: 18px;
-  line-height: 1.5;
-`;
+import {
+  StyledMovieSection,
+  StyledUl,
+  StyledLi,
+  StyledLink,
+} from './Movies.styled';
 
 export default function Movies() {
   const location = useLocation();
@@ -27,10 +22,21 @@ export default function Movies() {
   }
 
   useEffect(() => {
-    if (searchParams.get('query') === null) return;
-    searchMovies(searchParams.get('query')).then(data =>
-      setMovies(data.data.results)
-    );
+    const query = searchParams.get('query');
+    if (query === null) {
+      return;
+    }
+    if (query === '') {
+      toast.warning('Please enter some film!');
+      return;
+    }
+    searchMovies(query).then(data => {
+      if (data.data.total_results === 0) {
+        toast.error(`There is no ${query} film`);
+        return;
+      }
+      setMovies(data.data.results);
+    });
   }, [searchParams]);
 
   useEffect(() => {
@@ -38,22 +44,24 @@ export default function Movies() {
   }, []);
 
   return (
-    <section>
+    <StyledMovieSection>
       <Form onSubmit={onFormSubmit} />
       {movies.length > 0 && (
         <div>
-          {/* <h1>Searched movies</h1> */}
           <StyledUl>
             {movies.map(movie => (
               <StyledLi key={movie.id}>
-                <Link to={`/movies/${movie.id}`} state={{ from: location }}>
+                <StyledLink
+                  to={`/movies/${movie.id}`}
+                  state={{ from: location }}
+                >
                   {movie.title}
-                </Link>
+                </StyledLink>
               </StyledLi>
             ))}
           </StyledUl>
         </div>
       )}
-    </section>
+    </StyledMovieSection>
   );
 }

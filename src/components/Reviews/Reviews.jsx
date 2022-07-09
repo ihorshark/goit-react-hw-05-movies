@@ -1,13 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { getReviews } from 'components/TMDB-api';
 import { useState, useEffect } from 'react';
-import styled from 'styled-components';
-
-const StyledList = styled.ul`
-  border: 0;
-  padding: 0;
-  list-style: none;
-`;
+import { StyledList } from './Reviews.styled';
 
 export function Reviews() {
   const [reviews, setReviews] = useState([]);
