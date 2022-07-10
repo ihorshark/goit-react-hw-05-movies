@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSearchParams } from 'react-router-dom';
 
@@ -6,11 +6,7 @@ import { StyledForm, StyledInput, StyledButton } from './Form.styled';
 
 export function Form({ onSubmit }) {
   const [searchParams] = useSearchParams();
-  const [searchQuery, setSearchQuery] = useState('');
-
-  useEffect(() => {
-    setSearchQuery(searchParams.get('query'));
-  }, [searchParams]);
+  const [searchQuery, setSearchQuery] = useState(searchParams.get('query'));
 
   function formSubmit(e) {
     e.preventDefault();
