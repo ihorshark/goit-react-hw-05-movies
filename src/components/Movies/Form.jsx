@@ -1,14 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useSearchParams } from 'react-router-dom';
+
 import { StyledForm, StyledInput, StyledButton } from './Form.styled';
 
 export function Form({ onSubmit }) {
+  const [searchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    setSearchQuery(searchParams.get('query'));
+  }, [searchParams]);
 
   function formSubmit(e) {
     e.preventDefault();
 
     onSubmit(searchQuery);
-    setSearchQuery('');
   }
 
   return (
@@ -24,3 +31,7 @@ export function Form({ onSubmit }) {
     </StyledForm>
   );
 }
+
+Form.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};

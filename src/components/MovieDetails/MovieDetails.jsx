@@ -1,6 +1,6 @@
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import { useState, useEffect, Suspense } from 'react';
-import { filmDetails, getImage } from 'components/TMDB-api';
+import { filmDetails, getImage } from 'services/TMDB-api';
 import {
   StyledSection,
   StyledButton,

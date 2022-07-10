@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { getTrendingMovies } from 'components/TMDB-api';
+import { getTrendingMovies } from 'services/TMDB-api';
 import {
   StyledMain,
   StyledTitle,
@@ -22,10 +22,7 @@ export default function Home() {
       <StyledUl>
         {movies.map(movie => (
           <StyledLi key={movie.id}>
-            <StyledLink
-              to={`/goit-react-hw-05-movies/movies/${movie.id}`}
-              state={{ from: location }}
-            >
+            <StyledLink to={`/movies/${movie.id}`} state={{ from: location }}>
               {movie.title}
             </StyledLink>
           </StyledLi>

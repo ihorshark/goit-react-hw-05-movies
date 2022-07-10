@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { getCast, getImage } from 'components/TMDB-api';
+import { getCast, getImage } from 'services/TMDB-api';
 import { StyledWrapper, StyledItem } from './Cast.styled';
 
 export function Cast() {

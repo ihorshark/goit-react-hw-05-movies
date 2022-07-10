@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { searchMovies } from 'components/TMDB-api';
+import { searchMovies } from 'services/TMDB-api';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import { Form } from './Form';
 import {
@@ -52,7 +52,7 @@ export default function Movies() {
             {movies.map(movie => (
               <StyledLi key={movie.id}>
                 <StyledLink
-                  to={`/goit-react-hw-05-movies/movies/${movie.id}`}
+                  to={`/movies/${movie.id}`}
                   state={{ from: location }}
                 >
                   {movie.title}

@@ -11,18 +11,15 @@ const MovieDetails = lazy(() => import('./MovieDetails/MovieDetails'));
 export const App = () => {
   return (
     <Routes>
-      <Route path="/goit-react-hw-05-movies/" element={<SharedLayout />}>
+      <Route path="/" element={<SharedLayout />}>
         <Route index element={<Home />} />
-        <Route path="/goit-react-hw-05-movies/movies" element={<Movies />} />
-        <Route
-          path="/goit-react-hw-05-movies/movies/:movieId"
-          element={<MovieDetails />}
-        >
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/movies/:movieId" element={<MovieDetails />}>
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />
         </Route>
+        <Route path="*" element={<h1>Page not found!</h1>} />
       </Route>
-      <Route path="*" element={<h1>Page not found!</h1>} />
     </Routes>
   );
 };
